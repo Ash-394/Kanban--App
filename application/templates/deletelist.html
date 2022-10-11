@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+<div class="card text-center" >
+    <div class="card-header">
+        <h4 class="delete">Are you sure to delete this list and all it's tasks ?</h4>
+    
+    </div>
+  <div class="card-body" align="center">
+    <div class="card"  style="width: 18rem;">
+            <div class="card-header">
+                
+                List name: {{ list.list_name }} 
+            </div>
+            {% for Task in tasks %}
+            <ul class="list-group list-group-flush">
+                 
+              <li class="list-group-item"><h5 class="card-title">{{ Task.title }}</h5></li>
+              {% endfor %}
+            </ul>
+         
+    </div>
+   </div>
+
+    
+    
+    <div class="card-footer">
+        <a  href="/{{ list.list_name }}/deletelist/yes"><button type="button" class="btn btn-outline-warning"  >Yes</button> </a><a  href="/"><button type="button" class="btn btn-outline-secondary" >No</button></a>
+
+    </div>
+</div>
+
+
+   
+{% endblock %} 

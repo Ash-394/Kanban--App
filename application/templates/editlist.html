@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form">
+    <br>
+    <h3 align="center">Edit List name</h3>
+    <br>
+    <form action="/{{ listname.list_name }}/editlist" method = 'POST' class = 'login-form'>
+        
+        <input type="hidden" name = 'user' value =  '{{ user }}' />
+        <input type="hidden" name = 'id' value =  '{{ listname.id }}' />
+        <div class="input-group input-group-lg">
+            <span class="input-group-text" id="inputGroup-sizing-lg"></span>
+            <input type="text" name = 'listname' required placeholder="Listname" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="{{ listname.list_name }}"/>
+          </div>
+    <br>
+          <button class="btn btn-primary" type="submit">Edit list Name</button>
+       
+        
+    </form>
+{% endblock %} 

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form">
+    <br>
+    <h3>Add Task </h3>
+    <form action="/addtask" method='POST' class='Add-Task'>
+        
+        <input type="hidden" name='user' value='{{ user.id }}' />
+        <div class="form-group row">
+            <label for="title" class="col-sm-2 col-form-label">Task title</label>
+            <div class="col-sm-10">
+              <input  type="text" name='Task-title' required placeholder="Task-title"  class="form-control" />
+            </div>
+            <br>
+            <label for="description" class="col-sm-2 col-form-label">Task Description</label>
+            <div class="col-sm-10">
+              <input  type="text" name='Task-description' required placeholder="description"  class="form-control" />
+            </div>
+        </div>
+        
+        <div>
+            <div class="form-row align-items-center">
+               
+                
+                <div class="col-auto my-1">
+                    <label class="mr-sm-2" for="due">Due Date</label>
+                 <input type="date" id='due' name = 'Due' required placeholder="Due date" class="form-control" />
+                  <label class="mr-sm-2" for="list">Status:</label>
+                  <select class="custom-select mr-sm-2"  name='Status' id="id" >
+                    <option selected>Choose...</option>
+                    {% for list in lists %}
+                    <option value="{{ list.id }}">{{ list.list_name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-auto my-1">
+                  <div class="custom-control custom-checkbox mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="checkbox" name="completed" value="true">
+                    <label class="custom-control-label" for="checkbox">Mark as Completed</label>
+                    <input type="hidden"  name="completed" value="false"/>
+                  </div>
+                </div>
+                <div class="col-auto my-1">
+                  <button type="submit" class="btn btn-primary">Add task</button>
+                </div>
+            </div>
+            
+        </div>
+    
+
+    </form>
+</div>
+{% endblock %} 

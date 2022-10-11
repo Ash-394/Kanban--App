@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<br>
+<div class="card text-center" >
+    <div class="card-header">
+        List : {{ list.list_name }}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ Tasks.title }}</h5>
+      <p class="card-text">
+        {{ Tasks.task}}</p>
+                    {% if Tasks.completed == 'true'%}
+                        <p>Done</p>  
+                        <p> Due: {{ Tasks.due_date }}</p>
+                    {% else %}  
+                    <p>Pending</p>  
+                    <p> Due: {{ Tasks.due_date }}</p>
+                {% endif %}  
+    </div>
+
+    
+    
+    <div class="card-footer">
+        <h5 class="delete">Are you sure to delete this task?</h5>
+        <a  href="/{{ Tasks.id }}/deletetask/yes"><button  type="button" class="btn btn-outline-warning" >Yes</button></a>   <a  href="/"><button  type="button" class="btn btn-outline-secondary">No</button></a>
+        
+    </div>
+</div>
+
+            
+{% endblock %} 

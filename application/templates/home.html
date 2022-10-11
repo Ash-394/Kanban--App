@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+<h1 class="heading" align="center" font-color="Gray"> Your Kanban Board</h1>
+<br>
+    <div class='short-form' align = "center">
+        <a href = "/addlist"><button type="button" class="btn btn-dark">+ Add List</button></a>
+        
+        <a href = "/addtask"><button type="button" class="btn btn-dark" >+ Add Task</button></a>
+    </div>
+    <br>
+    {% for List in data.keys() %}
+    <div class="card-deck">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title" >{{ List }}</h4>
+                <p class="card-text">
+                    {% for Tasks in data[List] %}
+                    <div class="list-group-item">
+                    <h5 >{{ Tasks.title }}</h5>
+                    {% if Tasks.completed == 'true'%}
+                    <div class='tasks' id="done">
+                        <div class="edit" class="btn btn-primary" >
+                            <a  href = '/{{ Tasks.id }}/edit_task' > Edit</a>
+                            <a  href='/{{ Tasks.id }}/deletetask' role="button">Delete</a>
+                        </div>
+                        <p>{{ Tasks.task}}</p>
+                        <div class="dues">
+                            <p>Done</p>  
+                            <p> Due: {{ Tasks.due_date.strftime("%d %b %Y") }}</p>
+                            <p>completed on: {{Tasks.completed_date.strftime("%d %b %Y")   }}</p>
+                        </div>
+                    </div>
+                            {% else %}
+                            <div class='tasks'>
+                                <div class="edit">
+                                    <a href='/{{ Tasks.id }}/edit_task' class="btn btn-light" role="button">Edit Task</a>
+                                    <a href='/{{ Tasks.id }}/deletetask' class="btn btn-light" role="button">Delete Task</a>
+                                </div>
+                                
+                                <p>{{ Tasks.task}}</p>
+                                <div class="dues">
+                                    <p>Pending</p>  
+                                    <p> Due: {{ Tasks.due_date.strftime("%d %b %Y") }}</p>
+                                </div>
+                            </div>
+                            
+                            {% endif %}
+                        
+                        </div>
+                    {% endfor %}
+                
+              <div class="card-footer">
+                <small class="text-muted">
+                    <a class="btn btn-primary" href = '/{{ List }}/editlist' role="button">Edit</a>
+                    <a class="btn btn-primary" href='/{{ List }}/deletelist' role="button">Delete</a>
+                </small>
+              </div>
+            </div>
+        
+       
+    </div>
+    {% endfor %}
+{% endblock %}

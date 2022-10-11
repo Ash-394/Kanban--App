@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form">
+    
+    {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+    {% endfor %}
+    <br>
+    <h3 align="center">Add List name</h3>
+    <br>
+    <form action="/addlist" method = 'POST' class = 'login-form' align="center">
+        <div class="input-group input-group-lg">
+            <span class="input-group-text" id="inputGroup-sizing-lg"></span>
+            <input type="hidden" name = 'user' value =  '{{ data }}' />
+            <input type="text" name = 'listname' required placeholder="Listname" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+          </div>
+    <br>
+          <button class="btn btn-primary" type="submit">Add list</button>
+        
+        
+    </form>
+{% endblock %} 
